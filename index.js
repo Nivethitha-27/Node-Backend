@@ -21,7 +21,7 @@ app.use(cors());
 // db
 
 mongoose
-  .connect("mongodb://localhost:27017/userdetails", {
+  .connect("mongodb+srv://Nivethitha:Nivethitha27@cluster0.crona.mongodb.net/userdetails?retryWrites=true&w=majority", {
 
     useNewUrlParser: true,
   })
