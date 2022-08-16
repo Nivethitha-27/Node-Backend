@@ -16,6 +16,12 @@ const port = 5000;
 // middleware
 
 app.use(express.json());
+
+app.get("/", (req, res) =>
+  res.send(`Server Running`)
+);
+
+
 app.use(cors());
 
 // db
