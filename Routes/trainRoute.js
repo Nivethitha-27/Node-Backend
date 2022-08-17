@@ -90,10 +90,10 @@ route.get("/find/search/:key", async (req, res) => {
   console.log(req.params.key);
   try {
     const data = await train.find({
-      "$and": [
+      "$or": [
         { from: { $regex: req.params.key } },
-        { to: { $regex: req.params.key } }
-        // {trainname:{$regex:req.params.key}}
+        // { to: { $regex: req.params.key } }
+        // // {trainname:{$regex:req.params.key}}
 
       ]
     });
