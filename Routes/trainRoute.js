@@ -86,22 +86,22 @@ route.delete("/:id", async (req, res) => {
 
 // get train from and to
 
-// route.get("/find/search/:key", async (req, res) => {
-//   console.log(req.params.key);
-//   try {
-//     const data = await train.find({ 
-//       "$or":[
-//         {from:{$regex:req.params.key}}
-//         // // {to:{$regex:req.params.key}}
-//         // {trainname:{$regex:req.params.key}}
+route.get("/find/search/:key", async (req, res) => {
+  console.log(req.params.key);
+  try {
+    const data = await train.find({ 
+      "$or":[
+        {from:{$regex:req.params.key}}
+        // // {to:{$regex:req.params.key}}
+        // {trainname:{$regex:req.params.key}}
 
-//       ]
-//      });
-//     res.status(200).json(data);
-//   } catch (err) {
-//     res.status(500).send({ error: "cannot fetch product by id" });
-//   }
-// });
+      ]
+     });
+    res.status(200).json(data);
+  } catch (err) {
+    res.status(500).send({ error: "cannot fetch product by id" });
+  }
+});
 
 
 // get train from and to
