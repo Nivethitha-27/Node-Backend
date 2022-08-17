@@ -89,14 +89,14 @@ route.delete("/:id", async (req, res) => {
 route.get("/find/search/:key", async (req, res) => {
   console.log(req.params.key);
   try {
-    const data = await train.find({ 
-      "$or":[
-        {from:{$regex:req.params.key}},
-        {to:{$regex:req.params.key}},
-        {trainname:{$regex:req.params.key}}
+    const data = await train.find({
+      "$and": [
+        { from: { $regex: req.params.key } },
+        { to: { $regex: req.params.key } }
+        // {trainname:{$regex:req.params.key}}
 
       ]
-     });
+    });
     res.status(200).json(data);
   } catch (err) {
     res.status(500).send({ error: "cannot fetch product by id" });
