@@ -8,8 +8,8 @@ const paymentRoute = require("./Routes/paymentRoute");
 const authRoute = require("./Routes/authRoute");
 const mduRoute = require("./Routes/mduRoute");
 const cors = require("cors");
-// const port = process.env.PORT
-const port = 5000;
+const port = process.env.PORT;
+// const port = 5000;
 
 
 
@@ -35,9 +35,9 @@ mongoose
 
   .catch(err => console.log(err))
 
-// app.listen(process.env.PORT || 5000, () => console.log("server started"));
+app.listen(process.env.PORT || 5000, () => console.log("server started"));
 
-app.listen(port,console.log("server started"));
+// app.listen(port,console.log("server started"));
 
 
 
