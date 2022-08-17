@@ -5,13 +5,11 @@ const userRoute = require("./Routes/userRoute");
 const trainRoute = require("./Routes/trainRoute");
 const passengerRoute = require("./Routes/passengerRoute");
 const paymentRoute = require("./Routes/paymentRoute");
-
 const authRoute = require("./Routes/authRoute");
-
-
+const mduRoute = require("./Routes/mduRoute");
 const cors = require("cors");
-
 const port = process.env.PORT
+
 
 // middleware
 
@@ -35,7 +33,9 @@ mongoose
 
   .catch(err => console.log(err))
 
-app.listen(process.env.PORT || 5000 ,() => console.log("server started"));
+app.listen(process.env.PORT || 5000, () => console.log("server started"));
+
+
 
 
 // Route
@@ -45,6 +45,8 @@ app.use("/", authRoute);     //register,login
 app.use("/user", userRoute);  // user
 
 app.use("/train", trainRoute);   // train
+
+app.use("/mdu", mduRoute);   // individual trains
 
 app.use("/passenger", passengerRoute); //passenger
 
