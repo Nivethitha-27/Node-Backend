@@ -93,7 +93,6 @@ route.get("/find/search/:key", async (req, res) => {
       "$and": [
         { from: { $regex: req.params.key } },
         { to: { $regex: req.params.key } }
-        // // {trainname:{$regex:req.params.key}}
 
       ]
     });
