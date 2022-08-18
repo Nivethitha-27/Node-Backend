@@ -6,7 +6,7 @@ const trainRoute = require("./Routes/trainRoute");
 const passengerRoute = require("./Routes/passengerRoute");
 const paymentRoute = require("./Routes/paymentRoute");
 const authRoute = require("./Routes/authRoute");
-const mduRoute = require("./Routes/mduRoute");
+const adminRoute = require("./Routes/adminRoute");
 const cors = require("cors");
 const port = process.env.PORT;
 // const port = 5000;
@@ -50,7 +50,7 @@ app.use("/user", userRoute);  // user
 
 app.use("/train", trainRoute);   // train
 
-app.use("/mdu", mduRoute);   // individual trains
+app.use("/admin", adminRoute);   // admin
 
 app.use("/passenger", passengerRoute); //passenger
 
