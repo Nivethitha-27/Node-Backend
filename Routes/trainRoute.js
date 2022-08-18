@@ -86,7 +86,7 @@ route.delete("/:id", async (req, res) => {
 
 // get train from and to
 
-route.get("/find/search/:key/:key", async (req, res) => {
+route.get("/find/:key/:key", async (req, res) => {
   console.log(req.params.key);
   try {
     const data = await train.find({
@@ -98,7 +98,7 @@ route.get("/find/search/:key/:key", async (req, res) => {
     });
     res.status(200).json(data);
   } catch (err) {
-    res.status(500).send({ error: "cannot fetch product by id" });
+    res.status(500).send({ error: "cannot fetch" });
   }
 });
 
