@@ -1,6 +1,6 @@
 const uuid = require("uuid");
 const route = require("express").Router();
-
+require("dotenv").config();
 const stripe = require("stripe")("sk_test_51LUy9mSHMIw7a9qsk68PLfvChxPjS9ZI65OMypnFSeCJQLGzUx10U6plgaKzxwfjWhJG5NdIgErlxKgXg5QVudwj00eutdmuxy");
 
 route.post("/", (req, res) => {
