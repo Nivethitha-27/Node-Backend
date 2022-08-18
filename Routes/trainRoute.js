@@ -33,14 +33,14 @@ route.post("/", async (req, res) => {
 
 //get train details
 
-// route.get("/find", async (req, res) => {
-//   try {
-//     const data = await train.find();
-//     res.status(200).json(data);
-//   } catch (err) {
-//     res.status(500).send("error");
-//   }
-// });
+route.get("/find", async (req, res) => {
+  try {
+    const data = await train.find();
+    res.status(200).json(data);
+  } catch (err) {
+    res.status(500).send("error");
+  }
+});
 
 // get train details by id
 
