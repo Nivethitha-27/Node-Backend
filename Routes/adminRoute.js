@@ -51,7 +51,7 @@ route.post("/login", async (req, res) => {
             return res.status(400).json("Your Password Wrong!");
         }
 
-        let adminToken = jwt.sign({ _id: admin._id, email: admin.email }, process.env.PASS_SEC);
+        let adminToken = jwt.sign({ _id: admin._id, email: admin.email }, process.env.LOGIN);
 
         // **** user details and token  **** //
 

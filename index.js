@@ -8,7 +8,7 @@ const paymentRoute = require("./Routes/paymentRoute");
 const authRoute = require("./Routes/authRoute");
 const adminRoute = require("./Routes/adminRoute");
 const cors = require("cors");
-const port = process.env.PORT;
+const port = process.env.PORT || 5000;
 // const port = 5000;
 
 
@@ -27,17 +27,14 @@ app.use(cors());
 // db
 
 mongoose
-  .connect("mongodb+srv://Nivethitha:Nivethitha27@cluster0.crona.mongodb.net/userdetails?retryWrites=true&w=majority", {
-
-    useNewUrlParser: true,
-  })
+  .connect(process.env.MONGO_DB, { useNewUrlParser: true, })
   .then(() => console.log("DB Connected..!"))
 
   .catch(err => console.log(err))
 
-app.listen(process.env.PORT || 5000, () => console.log("server started"));
+// app.listen(process.env.PORT || 5000, () => console.log("server started"));
 
-// app.listen(port,console.log("server started"));
+
 
 
 
@@ -57,7 +54,7 @@ app.use("/passenger", passengerRoute); //passenger
 app.use("/payment", paymentRoute); //payment
 
 
-
+app.listen(port, () => console.log("server started"));
 
 
 

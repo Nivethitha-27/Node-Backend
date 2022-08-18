@@ -48,7 +48,7 @@ route.post("/login", async (req, res) => {
     if (!passwordValidation) {
       return res.status(400).json("Your Password Wrong");
     }
-    let accessToken = jwt.sign({ _id: user._id, email: user.email }, "userinfoSecretId");
+    let accessToken = jwt.sign({ _id: user._id, email: user.email }, process.env.LOGIN);
     res.send(accessToken);
 
 } catch (err) {
