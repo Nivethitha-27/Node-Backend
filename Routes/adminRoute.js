@@ -37,34 +37,26 @@ route.post("/register", async (req, res) => {
 // Login
 route.post("/login", async (req, res) => {
     try {
-        let admin = await db.findOne({ email: req.body.email }); //dbquery
-
-        if (!admin) {
-            return res.status(400).json("Wrong credentials!");
-        }
-
-        let passwordValidation = await bcrypt.compare(
-            req.body.password,
-            admin.password
-        );
-        if (!passwordValidation) {
-            return res.status(400).json("Your Password Wrong!");
-        }
-
-        let adminToken = jwt.sign({ _id: admin._id, email: admin.email }, process.env.PASS_SEC);
-
-        // **** user details and token  **** //
-
-        // const { password, ...others } = user._doc;
-        // res.status(200).json({ ...others, accessToken });
-
-        res.send(adminToken);
-    } catch (err) {
-        res.status(500).send("Wrong credentials...!");
+      let admin = await db.findOne({ email: req.body.email }); //dbquery
+      if (!admin) {
+        return res.status(400).json("please register");
+      }
+  
+      let passwordValidation = await bcrypt.compare(
+        req.body.password,
+        admin.password
+      );
+      if (!passwordValidation) {
+        return res.status(400).json("Your Password Wrong");
+      }
+      let accessToken = jwt.sign({ _id: admin._id, email: user.email }, "userinfoSecretId");
+      res.send(accessToken);
+  
+  } catch (err) {
+      res.status(500).send("error");
     }
-});
-
-
+  });
+  
 module.exports = route;
 
 
