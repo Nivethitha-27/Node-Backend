@@ -96,6 +96,7 @@ route.get("/find/:key/:key", async (req, res) => {
 
       ]
     });
+    console.log(res);
     res.status(200).json(data);
   } catch (err) {
     res.status(500).send({ error: "cannot fetch" });
