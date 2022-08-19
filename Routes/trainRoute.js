@@ -91,13 +91,11 @@ route.get("/find/:key", async (req, res) => {
   try {
     const data = await train.find({
       $and: [
-        { from: { $regex: req.params.key } },
-        { to: { $regex: req.params.key } }
+        { from: { $regex: req.params.from } },
+        { to: { $regex: req.params.to } }
       ]
     });
     res.status(200).json(data);
-    console.log(req.params.id);
-    
   } catch (err) {
     res.status(500).send({ error: "cannot fetch" });
   }
