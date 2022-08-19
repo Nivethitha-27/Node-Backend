@@ -89,7 +89,7 @@ route.delete("/:id", async (req, res) => {
 route.get("/find/:key", async (req, res) => {
   console.log(req.params.key);
   try {
-    const data = await train.find({
+    const data = await train.findOne({
       $and: [
         { from: { $regex: req.params.key } },
         { to: { $regex: req.params.key } }
