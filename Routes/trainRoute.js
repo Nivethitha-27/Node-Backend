@@ -91,8 +91,8 @@ route.get("/find/:key", async (req, res) => {
   try {
     const data = await train.find({
       $and: [
-        { from: { $regex: req.params.from } },
-        { to: { $regex: req.params.to } }
+        { from: { $regex: req.params.key } },
+        { to: { $regex: req.params.key } }
       ]
     });
     res.status(200).json(data);
@@ -104,28 +104,28 @@ route.get("/find/:key", async (req, res) => {
 
 // get train from and to
 
-// route.get("/find", async (req, res) => {
-//   const qNew = req.query.new;
-//   const qfrom = req.query.from;
-//   try {
-//     let traindetails;
-//     if (qNew) {
-//       traindetails = await train.find().sort({ createdAt: -1 }).limit(2)
-//     } else if (qfrom) {
-//       traindetails = await train.find({
-//         from: {
-//           $in: [qfrom],
-//         },
-//       });
-//     } else {
-//       traindetails = await train.find();
-//     }
-//     res.status(200).json(traindetails);
-//   }
-//   catch (err) {
-//     res.status(500).send("error");
-//   }
-// });
+route.get("/find", async (req, res) => {
+  const qNew = req.query.new;
+  const qfrom = req.query.from;
+  try {
+    let traindetails;
+    if (qNew) {
+      traindetails = await train.find().sort({ createdAt: -1 }).limit(2)
+    } else if (qfrom) {
+      traindetails = await train.find({
+        from: {
+          $in: [qfrom],
+        },
+      });
+    } else {
+      traindetails = await train.find();
+    }
+    res.status(200).json(traindetails);
+  }
+  catch (err) {
+    res.status(500).send("error");
+  }
+});
 
 
 module.exports = route;
