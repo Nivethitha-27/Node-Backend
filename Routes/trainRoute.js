@@ -89,21 +89,19 @@ route.delete("/:id", async (req, res) => {
 route.get("/find/:key", async (req, res) => {
   console.log(req.params.key);
   try {
+    const data = await train.find({
+      "$and": [
+        { from: { $regex: req.params.key } },
+        { to: { $regex: req.params.key } }
+      ]
+    });
+    console.log(req.params.id);
 
-    if (!key ) {
+    if (!data) {
       res.status(400).send({ error: "cannot fetch" });
-    }
-    else {
-      const data = await train.find({
-        "$and": [
-          { from: { $regex: req.params.key } },
-          { to: { $regex: req.params.key } }
-        ]
-      });
-      console.log(req.params.id);
+    } else {
       res.status(200).json(data);
     }
-
   } catch (err) {
     res.status(500).send({ error: "cannot fetch" });
   }
