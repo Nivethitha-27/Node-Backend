@@ -90,7 +90,7 @@ route.get("/find/:key", async (req, res) => {
   console.log(req.params.key);
   try {
 
-    if (from != key) {
+    if (!key ) {
       res.status(400).send({ error: "cannot fetch" });
     }
     else {
