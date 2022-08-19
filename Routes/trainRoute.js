@@ -95,7 +95,6 @@ route.get("/find/:key", async (req, res) => {
         { to: { $regex: req.params.key } }
       ]
     });
-
     res.status(200).json(data);
     console.log(req.params.id);
     
@@ -106,7 +105,7 @@ route.get("/find/:key", async (req, res) => {
 
 
 // get train from and to
-``
+
 // route.get("/find", async (req, res) => {
 //   const qNew = req.query.new;
 //   const qfrom = req.query.from;
