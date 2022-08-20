@@ -32,6 +32,7 @@ route.get("/:id", async (req, res) => {
 //update users
 
 route.put("/:id", async (req, res) => {
+
   if (req.body.password) {
     req.body.password = bcrypt.hash(req.body.password, 10);
   }
