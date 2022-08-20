@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const userRoute = require("./Routes/userRoute");
+const updateuserRoute = require("./Routes/updateuserRoute");
 const trainRoute = require("./Routes/trainRoute");
 const passengerRoute = require("./Routes/passengerRoute");
 const paymentRoute = require("./Routes/paymentRoute");
@@ -44,6 +45,8 @@ mongoose
 app.use("/", authRoute);     //register,login
 
 app.use("/user", userRoute);  // user
+
+app.use("/userupdate", updateuserRoute);  // updateuser
 
 app.use("/train", trainRoute);   // train
 
