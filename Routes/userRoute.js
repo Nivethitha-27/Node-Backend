@@ -32,21 +32,38 @@ route.get("/:id", async (req, res) => {
 
 //update users
 
+// route.put("/:id", async (req, res) => {
+
+//   if (req.body.password) {
+//     req.body.password = bcrypt.hash(req.body.password, 10);
+//   }
+//   try {
+//     const update = await update.findByIdAndUpdate(req.params.id, { $set: req.body }, { new: true });
+//     res.status(200).json(update);
+
+//   } catch (error) {
+//     res.status(500).json(error);
+
+//   }
+// });
+
 route.put("/:id", async (req, res) => {
-
-  if (req.body.password) {
-    req.body.password = bcrypt.hash(req.body.password, 10);
-  }
+  let pass = await bcrypt.hash(req.body.password, 10);
   try {
+
     const update = await update.findByIdAndUpdate(req.params.id, { $set: req.body }, { new: true });
-    res.status(200).json(update);
+     ({
+      username: req.body.username,
+      mobile: req.body.mobile,
+      password: pass,
 
-  } catch (error) {
-    res.status(500).json(error);
-
+    });
+    // let user = await update.save();
+    res.status(200).json(user);
+  } catch (err) {
+    res.status(500).send("error");
   }
 });
-
 
 // delete users
 
