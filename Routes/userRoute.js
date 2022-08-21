@@ -1,6 +1,7 @@
 const route = require("express").Router();
 const jwt = require("jsonwebtoken")
 const db = require("../Models/userschema");
+const update = require("../Models/updatauserschema");
 const bcrypt = require("bcrypt")
 
 
@@ -37,7 +38,7 @@ route.put("/:id", async (req, res) => {
     req.body.password = bcrypt.hash(req.body.password, 10);
   }
   try {
-    const update = await db.findByIdAndUpdate(req.params.id, { $set: req.body }, { new: true });
+    const update = await update.findByIdAndUpdate(req.params.id, { $set: req.body }, { new: true });
     res.status(200).json(update);
 
   } catch (error) {
