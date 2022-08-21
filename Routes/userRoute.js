@@ -50,8 +50,7 @@ route.get("/:id", async (req, res) => {
 route.put("/:id", async (req, res) => {
   let pass = await bcrypt.hash(req.body.password, 10);
   try {
-
-    const update = await update.findByIdAndUpdate(req.params.id, { $set: req.body }, { new: true });
+const update = await update.findByIdAndUpdate(req.params.id, { $set: req.body }, { new: true });
      ({
       username: req.body.username,
       mobile: req.body.mobile,
