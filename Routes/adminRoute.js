@@ -32,8 +32,6 @@ route.post("/register", async (req, res) => {
 })
 
 
-
-
 // Login
 route.post("/login", async (req, res) => {
     try {

@@ -58,26 +58,5 @@ route.delete("/:id", async (req, res) => {
 
 })
 
-// // update
-
-// route.put("/:id", async (req, res) => {
-
-//   try {
-   
-//     const update = await db.findByIdAndUpdate(req.params.id, { $set: req.body }, { new: true });
-//     ({
-//       username: req.body.username,
-//       mobile: req.body.mobile,
-//       password: pass,
-
-//     });
-//     res.status(200).json(update);
-
-//   } catch (error) {
-//     res.status(500).json(error);
-
-//   }
-// });
-
 
 module.exports = route;

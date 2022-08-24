@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
+const Tokenverification = require("./Middleware/Tokenverification");
 const userRoute = require("./Routes/userRoute");
 const trainRoute = require("./Routes/trainRoute");
 const passengerRoute = require("./Routes/passengerRoute");
@@ -8,10 +9,9 @@ const paymentRoute = require("./Routes/paymentRoute");
 const authRoute = require("./Routes/authRoute");
 const adminRoute = require("./Routes/adminRoute");
 const cors = require("cors");
-const port = process.env.PORT || 5000;
-// const port = 5000;
 
-
+// const port = process.env.PORT || 5000;
+const port = 5000;
 
 // middleware
 
@@ -35,20 +35,13 @@ mongoose
 app.listen(process.env.PORT || 5000, () => console.log("server started"));
 
 
-
-
-
-
 // Route
 
 app.use("/", authRoute);     //register,login
-
-app.use("/user", userRoute);  // user
-
-app.use("/train", trainRoute);   // train
-
 app.use("/admin", adminRoute);   // admin
-
+app.use(Tokenverification);  //token verification
+app.use("/train", trainRoute);   // train
+app.use("/user", userRoute);  // user
 app.use("/passenger", passengerRoute); //passenger
 
 app.use("/payment", paymentRoute); //payment

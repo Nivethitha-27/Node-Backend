@@ -4,6 +4,7 @@ const db = require("../Models/userschema");
 const bcrypt = require("bcrypt")
 require("dotenv").config();
 
+
 // register
 
 route.post("/register", async (req, res) => {
@@ -28,7 +29,7 @@ route.post("/register", async (req, res) => {
       .then(user => {
         transporter.sendMail({
           to: user.email,
-          from: "no-reply@trainexpress.com",
+          from: "nivethithas27@gmail.com",
           subject: "signup success",
           html: "<h1>Welcome to TrainExpress</h1>"
         })
