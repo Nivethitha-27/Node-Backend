@@ -3,7 +3,19 @@ const jwt = require("jsonwebtoken")
 const db = require("../Models/userschema");
 const bcrypt = require("bcrypt")
 require("dotenv").config();
+const nodemailer = require('nodemailer')
+const sendgridTransport = require('nodemailer-sendgrid-transport')
 
+// // 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
+
+
+// node mailer
+
+const transporter = nodemailer.createTransport(sendgridTransport({
+  auth: {
+    api_key: "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"
+  }
+}))
 
 
 // register
@@ -23,8 +35,22 @@ route.post("/register", async (req, res) => {
       password: pass,
 
     });
+    console.log(data)
     let user = await data.save();
-    res.status(200).json(user);
+
+    user.save()
+      .then(user => {
+        transporter.sendMail({
+          to: user.email,
+          from: "no-reply@trainexpress.com",
+          subject: "signup success",
+          html: "<h1>Welcome to TrainExpress</h1>"
+        })
+
+        res.status(200).json(user);
+      })
+
+
   } catch (err) {
     res.status(500).send("error");
   }
@@ -51,7 +77,7 @@ route.post("/login", async (req, res) => {
     let accessToken = jwt.sign({ _id: user._id, email: user.email }, process.env.LOGIN);
     res.send(accessToken);
 
-} catch (err) {
+  } catch (err) {
     res.status(500).send("error");
   }
 });

@@ -1,7 +1,6 @@
 const route = require("express").Router();
 const jwt = require("jsonwebtoken")
 const db = require("../Models/userschema");
-const update = require("../Models/updatauserschema");
 const bcrypt = require("bcrypt")
 
 
@@ -30,39 +29,20 @@ route.get("/:id", async (req, res) => {
 });
 
 
-//update users
-
-// route.put("/:id", async (req, res) => {
-
-//   if (req.body.password) {
-//     req.body.password = bcrypt.hash(req.body.password, 10);
-//   }
-//   try {
-//     const update = await update.findByIdAndUpdate(req.params.id, { $set: req.body }, { new: true });
-//     res.status(200).json(update);
-
-//   } catch (error) {
-//     res.status(500).json(error);
-
-//   }
-// });
+// update
 
 route.put("/:id", async (req, res) => {
-  let pass = await bcrypt.hash(req.body.password, 10);
-  try {
-const update = await update.findByIdAndUpdate(req.params.id, { $set: req.body }, { new: true });
-     ({
-      username: req.body.username,
-      mobile: req.body.mobile,
-      password: pass,
 
-    });
-    // let user = await update.save();
-    res.status(200).json(user);
-  } catch (err) {
-    res.status(500).send("error");
+  try {
+    const update = await db.findByIdAndUpdate(req.params.id, { $set: req.body }, { new: true });
+    res.status(200).json(update);
+
+  } catch (error) {
+    res.status(500).json(error);
+
   }
 });
+
 
 // delete users
 
@@ -77,6 +57,27 @@ route.delete("/:id", async (req, res) => {
   }
 
 })
+
+// // update
+
+// route.put("/:id", async (req, res) => {
+
+//   try {
+   
+//     const update = await db.findByIdAndUpdate(req.params.id, { $set: req.body }, { new: true });
+//     ({
+//       username: req.body.username,
+//       mobile: req.body.mobile,
+//       password: pass,
+
+//     });
+//     res.status(200).json(update);
+
+//   } catch (error) {
+//     res.status(500).json(error);
+
+//   }
+// });
 
 
 module.exports = route;

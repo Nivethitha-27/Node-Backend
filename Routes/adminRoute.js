@@ -20,7 +20,7 @@ route.post("/register", async (req, res) => {
             name: req.body.name,
             email: req.body.email,
             password: pass,
-           
+
 
         });
         let admin = await data.save();
@@ -52,12 +52,6 @@ route.post("/login", async (req, res) => {
         }
 
         let adminToken = jwt.sign({ _id: admin._id, email: admin.email }, process.env.LOGIN);
-
-        // **** user details and token  **** //
-
-        // const { password, ...others } = user._doc;
-        // res.status(200).json({ ...others, accessToken });
-
         res.send(adminToken);
     } catch (err) {
         res.status(500).send("Wrong credentials...!");

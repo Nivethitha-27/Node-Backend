@@ -7,15 +7,18 @@ const bcrypt = require("bcrypt")
 //passenger
 
 route.post("/", async (req, res) => {
+
   try {
+  
     const passengerdata = new passenger({
-      userid: req.body.userid,
+      userId: req.body.userId,
       passengerdata: req.body.passengerdata,
       traindata: req.body.traindata
 
     });
 
     let data = await passengerdata.save();
+    console.log(data);
     res.json(data);
 
   } catch (err) {

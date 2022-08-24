@@ -7,9 +7,9 @@ const registerSchema = mongoose.Schema({
   email: { type: String, required: true },
   mobile: { type: String, required: true },
   password: { type: String, required: true },
- 
+
 });
 
 
 
-module.exports = mongoose.model("register", registerSchema);
+module.exports = mongoose.model("registers", registerSchema);
