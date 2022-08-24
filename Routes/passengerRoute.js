@@ -11,7 +11,7 @@ route.post("/", async (req, res) => {
   try {
   
     const passengerdata = new passenger({
-      userId: req.body.userId,
+      userid: req.body.userid,
       passengerdata: req.body.passengerdata,
       traindata: req.body.traindata
 

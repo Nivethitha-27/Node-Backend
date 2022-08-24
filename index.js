@@ -8,8 +8,8 @@ const paymentRoute = require("./Routes/paymentRoute");
 const authRoute = require("./Routes/authRoute");
 const adminRoute = require("./Routes/adminRoute");
 const cors = require("cors");
-// const port = process.env.PORT || 5000;
-const port = 5000;
+const port = process.env.PORT || 5000;
+// const port = 5000;
 
 
 
