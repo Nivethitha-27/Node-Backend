@@ -3,20 +3,6 @@ const jwt = require("jsonwebtoken")
 const db = require("../Models/userschema");
 const bcrypt = require("bcrypt")
 require("dotenv").config();
-const nodemailer = require('nodemailer')
-const sendgridTransport = require('nodemailer-sendgrid-transport')
-
-// // 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
-
-
-// node mailer
-
-const transporter = nodemailer.createTransport(sendgridTransport({
-  auth: {
-    api_key: "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"
-  }
-}))
-
 
 // register
 
