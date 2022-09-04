@@ -3,9 +3,9 @@ const route = require("express").Router();
 require("dotenv").config();
 const stripe = require("stripe")("sk_test_51LUy9mSHMIw7a9qsk68PLfvChxPjS9ZI65OMypnFSeCJQLGzUx10U6plgaKzxwfjWhJG5NdIgErlxKgXg5QVudwj00eutdmuxy");
 
-route.post("/", (req, res) => {
 
-    const { train, token } = req.body;
+route.post("/", (req, res) => {
+ const { train, token } = req.body;
     console.log("train", train);
     console.log("price", train.price);
     const idempontencyKey = uuid()

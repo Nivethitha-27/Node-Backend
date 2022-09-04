@@ -19,9 +19,8 @@ route.get("/find", async (req, res) => {
 // get users by id
 
 route.get("/:id", async (req, res) => {
-
   try {
-    const get = await db.findById(req.params.id);
+    const get = await db.findById(req.user._id);
     res.json(get);
   } catch (err) {
     res.status(500).json(err);
@@ -31,10 +30,9 @@ route.get("/:id", async (req, res) => {
 
 // update
 
-route.put("/:id", async (req, res) => {
-
+route.put("/userupdate", async (req, res) => {
   try {
-    const update = await db.findByIdAndUpdate(req.params.id, { $set: req.body }, { new: true });
+    const update = await db.findByIdAndUpdate(req.user._id, { $set: req.body }, { new: true });
     res.status(200).json(update);
 
   } catch (error) {

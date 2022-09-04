@@ -16,10 +16,10 @@ route.post("/", async (req, res) => {
       to: req.body.to,
       arrivaltime: req.body.arrivaltime,
       depaturetime: req.body.depaturetime,
+      date: req.body.date,
       price: req.body.price,
       routes: req.body.routes,
-
-
+      status:"Available"
     });
     let data = await traindata.save();
     res.json(data);
@@ -31,21 +31,9 @@ route.post("/", async (req, res) => {
 })
 
 
-//get train details
-
-// route.get("/find", async (req, res) => {
-//   try {
-//     const data = await train.find();
-//     res.status(200).json(data);
-//   } catch (err) {
-//     res.status(500).send("error");
-//   }
-// });
-
 // get train details by id
 
 route.get("/find/:id", async (req, res) => {
-
   try {
     const post = await train.findById(req.params.id);
     res.json(post);
@@ -58,7 +46,6 @@ route.get("/find/:id", async (req, res) => {
 //update train
 
 route.put("/:id", async (req, res) => {
-
   try {
     const update = await train.findByIdAndUpdate(req.params.id, { $set: req.body }, { new: true });
     res.status(200).json(update);
@@ -87,7 +74,6 @@ route.delete("/:id", async (req, res) => {
 // get train from and to
 
 route.get("/find/:key", async (req, res) => {
-
   try {
     const data = await train.find({
       $and: [

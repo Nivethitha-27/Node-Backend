@@ -2,7 +2,6 @@ const route = require("express").Router();
 const jwt = require("jsonwebtoken");
 const db = require("../Models/adminschema");
 const bcrypt = require("bcrypt");
-const { ObjectId } = require("mongodb");
 require("dotenv").config();
 
 
@@ -20,8 +19,7 @@ route.post("/register", async (req, res) => {
             name: req.body.name,
             email: req.body.email,
             password: pass,
-
-
+            role: "admin"
         });
         let admin = await data.save();
         res.status(200).json(admin);
@@ -49,7 +47,7 @@ route.post("/login", async (req, res) => {
             return res.status(400).json("Your Password Wrong!");
         }
 
-        let adminToken = jwt.sign({ _id: admin._id, email: admin.email }, process.env.LOGIN);
+        let adminToken = jwt.sign({ _id: admin._id, email: admin.email, role: admin.role }, process.env.LOGIN);
         res.send(adminToken);
     } catch (err) {
         res.status(500).send("Wrong credentials...!");
