@@ -43,8 +43,7 @@ route.post("/register", async (req, res) => {
     });
     console.log(data)
     let user = await data.save();
-
-    res.status(200).json(user);
+   res.status(200).json(user);
   } catch (err) {
     res.status(500).send("error");
   }

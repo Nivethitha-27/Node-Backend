@@ -2,7 +2,7 @@ const route = require("express").Router();
 const jwt = require("jsonwebtoken")
 const db = require("../Models/userschema");
 const bcrypt = require("bcrypt")
-
+require("dotenv").config();
 
 // get users
 

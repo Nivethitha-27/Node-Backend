@@ -2,7 +2,7 @@ const route = require("express").Router();
 const train = require("../Models/trainschema");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt")
-
+require("dotenv").config();
 
 
 //Admin//train post
